@@ -38,7 +38,7 @@ The model highlights **warm, shallow coastal waters** in tropical and subtropica
 - The Coral Triangle  
 - The Great Barrier Reef  
 
-![Final Prediction Map](https://i.imgur.com/k97M0Br.png)  
+![Final Prediction Map](https://i.imgur.com/BLjLHTd.png)  
 <sub>*Figure: Predicted habitat suitability. Yellow = high suitability; blue dots = GBIF occurrence points.*</sub>
 
 ---
