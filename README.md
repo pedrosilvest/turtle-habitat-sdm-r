@@ -1,7 +1,7 @@
 # Global Habitat Suitability Model for the Green Sea Turtle (*Chelonia mydas*)
 
-![Turtle Header Image](https://images.unsplash.com/photo-1543826315-99f5446419b4?q=80&w=1740&auto=format&fit=crop)
-*Photo by [Jakob Owens](https://unsplash.com/@jakobowens1) on Unsplash*
+![Turtle Header Image](https://imgur.com/gallery/chelonia-mydas-C4YzhED#F72zu4w)
+*Photo from imgur*
 
 
 This repository contains the R code and analysis for a Species Distribution Model (SDM) predicting the global habitat suitability for the endangered green sea turtle. By integrating species occurrence data from the Global Biodiversity Information Facility (GBIF) with marine environmental data from Bio-Oracle, this project identifies key environmental drivers and maps potential habitats worldwide.
