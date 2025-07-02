@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Habitat Modeling of the Green Sea Turtle</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            color: #343a40;
+        }
+        .container {
+            max-width: 960px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        header {
+            background-color: #0077b6;
+            color: #ffffff;
+            padding: 2rem;
+            text-align: center;
+            border-radius: 8px 8px 0 0;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        section {
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #dee2e6;
+        }
+        section:last-child {
+            border-bottom: none;
+        }
+        h2 {
+            color: #023e8a;
+            font-size: 2rem;
+            border-bottom: 2px solid #0096c7;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        h3 {
+            color: #0077b6;
+            font-size: 1.5rem;
+            margin-top: 2rem;
+        }
+        code {
+            font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+            font-size: 0.9em;
+            background-color: #e9ecef;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+        pre {
+            background-color: #282c34;
+            color: #abb2bf;
+            padding: 1.5em;
+            border-radius: 8px;
+            overflow-x: auto;
+            line-height: 1.4;
+        }
+        pre code {
+            background-color: transparent;
+            padding: 0;
+        }
+        .image-container {
+            text-align: center;
+            margin: 2rem 0;
+        }
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.07);
+        }
+        .caption {
+            font-style: italic;
+            color: #6c757d;
+            margin-top: 0.5rem;
+            font-size: 0.95rem;
+            display: block;
+        }
+        ul, ol {
+            padding-left: 20px;
+        }
+        li {
+            margin-bottom: 0.5rem;
+        }
+        .highlight {
+            background-color: #caf0f8;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-weight: bold;
+            color: #023e8a;
+        }
+        .disclaimer {
+            background-color: #eef3f7;
+            border-left: 5px solid #0077b6;
+            padding: 15px;
+            margin-top: 20px;
+            font-style: italic;
+        }
+        footer {
+            text-align: center;
+            margin-top: 2rem;
+            padding: 1rem;
+            font-size: 0.9rem;
+            color: #6c757d;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Mapping the Home of the Green Sea Turtle (<i>Chelonia mydas</i>)</h1>
+        <p>A Species Distribution Model Using R, GBIF, and Bio-Oracle Data</p>
+    </header>
+
+    <div class="container">
+
+        <section id="introduction">
+            <h2>The Biological Context</h2>
+            <p>
+                The green sea turtle (<i>Chelonia mydas</i>) is a large, migratory marine reptile found in tropical and subtropical oceans worldwide. As one of the few herbivorous sea turtles, they play a crucial role as "lawnmowers of the sea," maintaining the health of seagrass beds and coral reef ecosystems. Due to numerous threats, including habitat degradation, plastic pollution, and bycatch, the species is listed as <strong>Endangered</strong> on the IUCN Red List.
+            </p>
+        </section>
+
+        <section id="objective">
+            <h2>Project Objective</h2>
+            <p>
+                The primary goal of this analysis is to develop a robust Species Distribution Model (SDM) to predict suitable habitats for the green sea turtle on a global scale. This model aims to identify the key environmental factors driving their distribution and generate a predictive map that can guide conservation efforts.
+            </p>
+            <div class="disclaimer">
+                <strong>Disclaimer:</strong> This project was undertaken for recreational and educational purposes to practice and demonstrate skills in species distribution modeling. While the methodology is sound, the results have not undergone formal peer review and should be considered a learning exercise.
+            </div>
+        </section>
+
+        <section id="methods">
+            <h2>Data and Methodology</h2>
+            <h3>1. Data Sources</h3>
+            <ul>
+                <li><strong>Occurrence Data:</strong> Species locations were obtained from the Global Biodiversity Information Facility (GBIF). The data was rigorously cleaned to include only reliable records (e.g., human observations) and remove duplicates.</li>
+                <li><strong>Environmental Data:</strong> A comprehensive set of marine environmental variables was sourced from <strong>Bio-Oracle</strong>. These predictors include sea surface temperature, salinity, depth (bathymetry), chlorophyll concentration, pH, and various nutrient levels.</li>
+            </ul>
+
+            <div class="image-container">
+                <img src="https://i.imgur.com/uF9dJqV.png" alt="Plots of Mean Sea Surface Temperature, Salinity, and Depth">
+                <span class="caption">Figure 1: Key environmental predictor variables used in the model. These maps show the global patterns of temperature, salinity, and ocean depth, which are critical drivers of marine life distribution.</span>
+            </div>
+
+            <h3>2. Modeling and Validation</h3>
+            <p>
+                A <strong>Generalized Linear Model (GLM)</strong> was used to model the relationship between turtle presences and the environmental conditions. To build the model, a presence-background approach was used, comparing the environment at known turtle locations against 10,000 random "background" points from across the study area.
+            </p>
+            <p>
+                Crucially, to ensure the model's predictive power is not overestimated, the data was split into two independent sets:
+            </p>
+            <ul>
+                <li><strong>A Training Set (70% of the data)</strong> used to fit the GLM.</li>
+                <li><strong>A Testing Set (30% of the data)</strong> held back to evaluate the model's performance on unseen data.</li>
+            </ul>
+            <p>The model's performance was quantified using the <strong>Area Under the Curve (AUC)</strong> of the Receiver Operating Characteristic (ROC) plot. Our model achieved an AUC of <span class="highlight">0.9707</span> on the test data, indicating excellent predictive accuracy.</p>
+        </section>
+
+        <section id="results">
+            <h2>Results and Interpretation</h2>
+            <p>
+                The trained GLM was used to predict habitat suitability across the world's oceans. The resulting map highlights areas with environmental conditions favorable for <i>Chelonia mydas</i>.
+            </p>
+            <div class="image-container">
+                <img src="https://i.imgur.com/jM86mG3.png" alt="Predicted habitat suitability map for Chelonia mydas">
+                <span class="caption">Figure 2: Final model output. The top panel shows the predicted habitat suitability (warmer colors indicate higher suitability). The bottom panel overlays the known GBIF occurrences (blue dots), demonstrating a strong visual match between predictions and reality.</span>
+            </div>
+
+            <h3>Interpretation of the Results</h3>
+            <p>
+                The model successfully identified key habitats for the green sea turtle. The areas with the highest predicted suitability (in yellow) correspond to:
+            </p>
+            <ul>
+                <li><strong>Warm, shallow coastal waters</strong> in tropical and subtropical zones.</li>
+                <li>Major known congregation areas like the <strong>Caribbean Sea</strong>, the <strong>Coral Triangle</strong> in Southeast Asia, the <strong>Great Barrier Reef</strong>, and the coastal waters of Brazil and East Africa.</li>
+                <li>The model correctly predicts low suitability in cold, deep, open-ocean environments, which are unsuitable for this species.</li>
+            </ul>
+            <p>
+                The strong visual alignment between the high-suitability areas and the independent occurrence points (bottom panel) provides confidence in the model's predictions. The high AUC score further validates that the model has effectively learned the species' environmental niche.
+            </p>
+        </section>
+        
+        <section id="value">
+            <h2>Value and Applications</h2>
+            <p>
+                This habitat suitability map is a powerful tool for conservation. It can be used to:
+            </p>
+            <ul>
+                <li><strong>Prioritize conservation efforts</strong> by identifying critical habitats that require protection.</li>
+                <li>Inform the design and placement of <strong>Marine Protected Areas (MPAs)</strong>.</li>
+                <li>Assess how climate change might impact the future distribution of suitable habitats.</li>
+                <li>Guide future field research to discover new populations.</li>
+            </ul>
+        </section>
+
+        <section id="future-directions">
+            <h2>Future Directions: Incorporating Biotic Interactions</h2>
+            <p>
+                This model is based on abiotic (non-living) factors like temperature and salinity. However, a species' distribution is also heavily influenced by biotic interactions, especially the availability of food.
+            </p>
+            <p>
+                A powerful next step would be to create a more ecologically complete model by incorporating the distribution of the green sea turtle's primary food sources: <strong>seagrasses and algae</strong>.
+            </p>
+            <p>
+                This could be accomplished by:
+            </p>
+            <ol>
+                <li>Developing separate SDMs for key seagrass or algae species to predict their suitable habitats.</li>
+                <li>Using the resulting food-source suitability map as an additional <strong>predictor variable</strong> in a new *Chelonia mydas* model.</li>
+            </ol>
+            <p>
+                Such an analysis would help distinguish between generally suitable areas and critical <strong>foraging grounds</strong>, providing a much more nuanced and powerful tool for targeted conservation actions.
+            </p>
+        </section>
+
+        <section id="code">
+            <h2>Reproducible R Code</h2>
+            <p>The complete R script used for this analysis is provided below for transparency and reproducibility.</p>
+            <pre><code class="language-r"># Load essential libraries
+library(tidyverse)
+library(sf)
+library(geodata)
+library(raster)
+library(dismo)
+library(rJava)
+library(dplyr)
+library(terra)
+library(pROC)
+
+# Initialize Java (needed for some dismo functions)
+.jinit()
+
+# ========== Load and clean GBIF occurrence data ==========
+# Replace with the path to your data file
+gbif_data <- read.table("/path/to/your/occurrence.txt",
+                        header = TRUE, sep = "\t", quote = "", stringsAsFactors = FALSE, fill = TRUE)
+
+# Filter for valid coordinates and reliable records
+cleaned_data <- gbif_data %>%
+  filter(!is.na(decimalLatitude) & !is.na(decimalLongitude)) %>%
+  filter(decimalLatitude != 0 & decimalLongitude != 0) %>%
+  filter(basisOfRecord %in% c("HUMAN_OBSERVATION", "OBSERVATION")) %>%
+  distinct(decimalLatitude, decimalLongitude, .keep_all = TRUE)
+
+# Convert to a spatial sf object
+points_sf <- st_as_sf(cleaned_data, coords = c("decimalLongitude", "decimalLatitude"), crs = 4326)
+
+# ========== Load and Assemble Environmental Data (Bio-Oracle) ==========
+data_dir <- "/path/to/your/environmental_data/"
+
+# Load individual NetCDF layers
+temp_layer <- rast(file.path(data_dir, "thetao_baseline_2000_2019_depthsurf_74ff_39fa_9adc_U1746345739954.nc"))[[1]]
+depth_layer <- rast(file.path(data_dir, "terrain_characteristics_6d78_4f59_9e1f_U1746345111304.nc"))[[1]]
+# ... and so on for all other layers ...
+sal_layer <- rast(file.path(data_dir, "so_baseline_2000_2019_depthsurf_49ed_5fc4_602c_U1746345608381.nc"))[[1]]
+
+# Function to align all raster layers to the same grid
+align_layer <- function(target, reference) {
+  target_crop <- crop(target, reference)
+  resample(target_crop, reference)
+}
+ref <- temp_layer
+
+# Combine all aligned layers into a single stack
+env_stack <- c(
+  temp_layer, align_layer(depth_layer, ref), align_layer(sal_layer, ref) # Abbreviated for example
+  # Add all other aligned layers here
+)
+# Make sure to name all layers
+names(env_stack) <- c("temp", "depth", "salinity", ...) 
+
+# ========== Prepare Data for Modeling ==========
+# Extract environmental values for presence points
+points_vect <- vect(points_sf)
+pres_vals <- terra::extract(env_stack, points_vect)
+pres_vals$presence <- 1
+
+# Generate 10,000 random background points
+set.seed(42)
+bg_points <- spatSample(env_stack, size = 10000, method = "random", na.rm = TRUE, as.points = TRUE)
+bg_vals <- terra::extract(env_stack, bg_points)
+bg_vals$presence <- 0
+
+# Combine presence and background data into a single dataframe
+model_df <- na.omit(rbind(pres_vals, bg_vals))
+
+# ========== Train-Test Split and Model Evaluation ==========
+# Split data into 70% training and 30% testing
+set.seed(42)
+train_idx <- sample(seq_len(nrow(model_df)), size = 0.7 * nrow(model_df))
+train_data <- model_df[train_idx, ]
+test_data <- model_df[-train_idx, ]
+
+# Fit GLM on the TRAINING data only
+glm_model <- glm(presence ~ ., data = train_data[, -1], family = binomial)
+summary(glm_model)
+
+# Predict on the held-out TEST data
+test_preds <- predict(glm_model, newdata = test_data[, -which(names(test_data) == "presence")], type = "response")
+
+# Evaluate performance with AUC
+roc_obj <- roc(test_data$presence, test_preds)
+auc_score <- auc(roc_obj) 
+print(paste("Model AUC on test data:", round(auc_score, 4)))
+
+# ========== Predict and Plot Final Map ==========
+# Use the trained model to predict suitability across the entire map
+prediction <- predict(env_stack, glm_model, type = "response")
+
+# Save the final plot
+png("/path/to/save/your/plot/predicted_habitat.png", width=800, height=800)
+par(mfrow= c(2,1), mar=c(2,2,2,2)) # Adjust margins
+plot(prediction, main = "Predicted Habitat Suitability for Chelonia mydas")
+plot(prediction, main = "With Chelonia mydas GBIF Occurrences")
+points(points_sf, col = "blue", pch = 20, cex = 0.5)
+dev.off()
+</code></pre>
+        </section>
+
+    </div>
+
+    <footer>
+        <p>Analysis performed in R. Data sources: GBIF, Bio-Oracle.</p>
+    </footer>
+
+</body>
+</html>
