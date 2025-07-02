@@ -1,5 +1,10 @@
 # Global Habitat Suitability Model for the Green Sea Turtle (*Chelonia mydas*)
 
+## Full Report
+
+**[➡️ View the Full Project Report](https://pedrosilvest.github.io/turtle-habitat-sdm-r/results.html)**  
+<sub>*Hosted via GitHub Pages*</sub>
+
 <div align="center">
   <img src="https://i.pinimg.com/originals/79/05/05/790505ac915716df8c2dc4d4eb42d553.gif" width="400"/>
   <br>
@@ -22,12 +27,6 @@ Developed as a personal project, it demonstrates skills in **spatial analysis**,
 - **Modeling:** Generalized Linear Model (GLM)  
 - **Validation:** 70/30 train-test split with an AUC of **0.97**
 
----
-
-## Full Report
-
-**[➡️ View the Full Project Report](https://pedrosilvest.github.io/turtle-habitat-sdm-r/results.html)**  
-<sub>*Hosted via GitHub Pages*</sub>
 
 ---
 
