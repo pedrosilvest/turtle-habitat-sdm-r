@@ -1,6 +1,6 @@
 # Global Habitat Suitability Model for the Green Sea Turtle (*Chelonia mydas*)
 
-![Turtle Header Image](https://imgur.com/gallery/chelonia-mydas-C4YzhED#F72zu4w)
+![Turtle Header Image](https://i.imgur.com/GCSZ8z1.jpeg)
 *Photo from imgur*
 
 
@@ -47,23 +47,7 @@ library(dismo)
 library(rJava)
 library(terra)
 library(pROC)
-
-
-You will also need a working Java installation for the rJava package.
-
-Execution Steps
-
-Clone the Repository:
-
-Generated bash
-git clone https://github.com/your-username/turtle-habitat-sdm-r.git
-cd turtle-habitat-sdm-r
-IGNORE_WHEN_COPYING_START
-content_copy
-download
-Use code with caution.
-Bash
-IGNORE_WHEN_COPYING_END
+```
 
 Add Data:
 

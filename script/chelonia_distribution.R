@@ -112,8 +112,7 @@ names(env_stack) <- c("temp", "depth", "chl_mean", "chl_max", "chl_range",
 
 
 
-png("/Users/pedrosilvestre/Desktop/species destribution modeling/github/plot/mean_sst_salinity_depth.png", 
-    width = 800, height = 1200)  # taller to fit 3 plots
+png("/Users/pedrosilvestre/Desktop/species destribution modeling/github/plot/mean_sst_salinity_depth.png")  # taller to fit 3 plots
 
 par(mfrow = c(3, 1))  # 3 rows, 1 column layout
 
