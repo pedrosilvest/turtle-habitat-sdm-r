@@ -1,6 +1,6 @@
 # Global Habitat Suitability Model for the Green Sea Turtle (*Chelonia mydas*)
 
-<img src="https://i.imgur.com/GCSZ8z1.jpeg" alt="Turtle Header Image" width="400"/>
+<img src="https://i.pinimg.com/originals/79/05/05/790505ac915716df8c2dc4d4eb42d553.gif" alt="Turtle Header Image" width="400"/>
 
 <sub>*Photo from imgur*</sub>
 
