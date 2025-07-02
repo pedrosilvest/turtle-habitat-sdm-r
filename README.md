@@ -26,8 +26,8 @@ Developed as a personal project, it demonstrates skills in **spatial analysis**,
 
 ## Full Report
 
-**[View the Full Project Report](https://your-username.github.io/turtle-habitat-sdm-r/report.html)**  
-<sub>*Replace `your-username` with your actual GitHub username*</sub>
+**[➡️ View the Full Project Report](https://pedrosilvest.github.io/turtle-habitat-sdm-r/results.html)**  
+<sub>*Hosted via GitHub Pages*</sub>
 
 ---
 
