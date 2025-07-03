@@ -5,7 +5,7 @@
 <div align="center">
 
   <a href="https://pedrosilvest.github.io/turtle-habitat-sdm-r/results.html" target="_blank" style="text-decoration: none;">
-    <p style="display: inline-block; background-color: #2d72d9; color: white; font-size: 1.2rem; font-weight: bold; padding: 12px 24px; border-radius: 8px; margin: 20px 0;">
+    <p style="display: inline-block; background-color: #2d72d9; color: white; font-size: 1.5rem; font-weight: bold; padding: 14px 28px; border-radius: 8px; margin: 20px 0;">
       🚀 View the Full Project Report
     </p>
   </a>
@@ -18,6 +18,7 @@
   <img src="https://i.pinimg.com/originals/79/05/05/790505ac915716df8c2dc4d4eb42d553.gif" width="400"/>
 
 </div>
+
 
 ---
 
